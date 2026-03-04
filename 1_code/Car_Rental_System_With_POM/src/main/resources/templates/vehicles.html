@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Available Vehicles</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        th {
+            background-color: #f0f0f0;
+        }
+        h2 {
+            text-align: center;
+        }
+        .btn {
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Available Vehicles</h2>
+
+<table>
+    <tr>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Year</th>
+        <th>Daily Rate</th>
+        <th>Action</th>
+    </tr>
+
+    <tr th:each="vehicle : ${vehicles}">
+        <td th:text="${vehicle.make}"></td>
+        <td th:text="${vehicle.model}"></td>
+        <td th:text="${vehicle.year}"></td>
+        <td th:text="'$' + ${vehicle.dailyRate}"></td>
+        <td>
+            <form action="/reservations/new" method="get">
+                <button class="btn" type="submit">Reserve</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<p style="text-align:center;">
+    <a href="/dashboard">Back to Dashboard</a>
+</p>
+
+</body>
+</html>

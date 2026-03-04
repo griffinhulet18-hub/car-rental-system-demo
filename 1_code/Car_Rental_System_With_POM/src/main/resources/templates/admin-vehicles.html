@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Vehicle Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        form {
+            margin: 10px 0;
+        }
+        input {
+            margin: 4px;
+            padding: 6px;
+        }
+        button {
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Admin Vehicle Management</h1>
+<p>This page is accessible only to administrators.</p>
+
+<h2>Add Vehicle</h2>
+<form action="/admin/vehicles/add" method="post">
+    <input name="make" placeholder="Make" required>
+    <input name="model" placeholder="Model" required>
+    <input name="year" type="number" placeholder="Year" required>
+    <input name="dailyRate" type="number" step="0.01" placeholder="Daily Rate" required>
+    <button type="submit">Add Vehicle</button>
+</form>
+
+<h2>Current Vehicles</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Year</th>
+        <th>Daily Rate</th>
+        <th>Action</th>
+    </tr>
+
+    <tr th:each="v : ${vehicles}">
+        <td th:text="${v.id}"></td>
+        <td th:text="${v.make}"></td>
+        <td th:text="${v.model}"></td>
+        <td th:text="${v.year}"></td>
+        <td th:text="'$' + ${v.dailyRate}"></td>
+        <td>
+            <form action="/admin/vehicles/delete" method="post">
+                <input type="hidden" name="id" th:value="${v.id}">
+                <button type="submit">Remove</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<br><br>
+
+<a href="/dashboard">Back to Dashboard</a> |
+<a href="/logout">Logout</a>
+
+</body>
+</html>

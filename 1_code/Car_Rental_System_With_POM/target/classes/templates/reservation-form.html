@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New Reservation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        form {
+            display: inline-block;
+            margin-top: 20px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-top: 12px;
+        }
+        input, button {
+            width: 220px;
+            padding: 6px;
+            margin-top: 6px;
+        }
+        button {
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Create Reservation</h2>
+
+<form action="/reservations" method="post">
+
+    <label>Vehicle</label>
+    <input type="text" name="vehicle" placeholder="Example: Toyota Camry" required>
+
+    <label>Start Date</label>
+    <input type="date" name="startDate" required>
+
+    <label>End Date</label>
+    <input type="date" name="endDate" required>
+
+    <button type="submit">Confirm Reservation</button>
+</form>
+
+<br><br>
+<a href="/vehicles">Back to Vehicles</a>
+
+</body>
+</html>

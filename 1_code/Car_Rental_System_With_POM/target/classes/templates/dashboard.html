@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 80px;
+        }
+        .btn {
+            display: block;
+            width: 250px;
+            margin: 15px auto;
+            padding: 12px;
+            font-size: 16px;
+            text-decoration: none;
+            background-color: #28a745;
+            color: white;
+            border-radius: 6px;
+        }
+        .admin {
+            background-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Dashboard</h2>
+
+<a class="btn" href="/vehicles">View Vehicles</a>
+<a class="btn" href="/reservations/my">My Reservations</a>
+
+<!-- Admin-only button -->
+<div th:if="${session.role == 'ADMIN'}">
+    <a class="btn admin" href="/admin/vehicles">Admin Vehicle Management</a>
+</div>
+
+<br>
+<a href="/logout">Logout</a>
+
+</body>
+</html>
